@@ -1,0 +1,396 @@
+/* <!-- MAIN BODY CONTROL RULES --!> */
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #ffffff;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+a:link {
+  text-decoration: none;
+  color: #000;
+}
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.overflow {
+  overflow: scroll;
+}
+.Login {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 85%;
+  overflow: hidden;
+}
+
+.Row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.Center {
+  align-items: center;
+  justify-items: center;
+}
+.Full {
+  width: 100%;
+}
+.Half {
+  width: 50%;
+}
+.Quarter {
+  width: 25%;
+}
+.Mid {
+  width: 70%;
+}
+
+.SpaceEvenly {
+  justify-content: space-between;
+}
+
+.SpaceAround {
+  justify-content: space-around;
+}
+.Margin {
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.FloatRight {
+  float: right;
+}
+.MarginTop {
+  margin-top: 20px;
+}
+
+.ColumnRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.header {
+  height: 15%;
+  margin-bottom: 20%;
+}
+.footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  overflow: hidden;
+}
+
+.RowColumn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+.flexright {
+  align-self: initial;
+  justify-self: right;
+}
+
+.HeaderFooterRowColumn {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.Center {
+  justify-content: center;
+  text-align: center;
+  align-content: center;
+}
+.Column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.Row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+/* <!-- FORM RULES --!> */
+
+form input {
+  border-radius: 20px;
+  text-align: center;
+}
+
+form input:focus {
+  outline: none;
+}
+
+form button {
+  padding: 1.5%;
+  margin-top: 1%;
+  border-color: rgb(51, 85, 51);
+}
+
+.BoxStyling {
+  background: #4c5d63;
+  color: white;
+  opacity: 90%;
+}
+/* <!-- COLOR SCHEMES --!> */
+
+.White {
+  color: white;
+}
+
+.Black {
+  color: black;
+}
+.Grey {
+  color: rgb(58, 57, 57);
+}
+.Color1 {
+  background-color: #2e4960;
+}
+
+/* .Color2:nth-of-type(odd) {
+  background-color: rgb(73, 69, 69);
+} */
+/* .Color2:nth-of-type(even) {
+  background-color: rgb(197, 197, 197);
+} */
+
+.Color2 {
+  background-color: rgb(197, 197, 197);
+}
+
+.Color3 {
+  background-color: rgb(47, 126, 119);
+}
+
+.Color4 {
+  background-color: rgb(175, 216, 213);
+}
+
+.Color5 {
+  background-color: rgb(152, 153, 153);
+}
+.Submit {
+  background-color: #36c95e;
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+}
+
+.BackgroundImage {
+  background: url("./images/Motorcycle.jpg");
+  background-color: #cccccc;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  width: 100%;
+  height: auto;
+  opacity: 90%;
+}
+
+ul li:hover {
+  cursor: pointer;
+}
+.padding {
+  padding: 1%;
+}
+.textColor1 {
+  color: aliceblue;
+}
+
+.fontWeight {
+  font-weight: 800;
+  font-size: 14px;
+}
+/* <!-- VISUAL EFFECTS --!> */
+
+.Italic {
+  font-style: italic;
+}
+
+h1 {
+  font-size: 22px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.border {
+  border-radius: 20px;
+}
+
+button {
+  border-bottom-right-radius: 20px;
+  border-top-left-radius: 20px;
+}
+.DeleteButton {
+  border-radius: 10px;
+  background-color: red;
+  border-width: 0;
+}
+
+.MakeProfileButton {
+  border-radius: 10px;
+  background-color: rgb(27, 187, 27);
+  border-width: 0;
+}
+
+button:hover {
+  opacity: 0.5;
+  filter: grayscale(30%);
+}
+
+.boxshadow {
+  box-shadow: 2px 2px 5px #aaaaaa;
+}
+
+/* <!-- ONE OFF STYLING --!> */
+
+.BorderBottom {
+  border-bottom: 1px solid rgb(139, 139, 139);
+}
+
+.dropbtn {
+  color: rgb(58, 57, 57);
+  padding: 5px;
+  font-size: 16px;
+  border: none;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: #3e8e41;
+}
+
+.Spacing {
+  padding: 2%;
+}
+
+.Purchase {
+  border-style: none;
+  background-color: #3e8e41;
+  color: aliceblue;
+}
+
+.p50 {
+  width: "50%";
+}
+
+@media screen and (min-width: 800px) {
+  main {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 80%;
+  }
+  header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 20%;
+    width: 100%;
+  }
+  .RowColumn {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+  }
+  .HeaderFooterRowColumn {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+  }
+  .ColumnRow {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+  }
+  .ColumnRow {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  .ConditionalCenter {
+    align-items: center;
+    justify-items: center;
+  }
+}
+
+#confirm {
+  display: none;
+  background-color: #f3f5f6;
+  color: #000000;
+  border: 1px solid #aaa;
+  position: fixed;
+  width: 25%;
+  height: 30%;
+  left: 40%;
+  top: 40%;
+  box-sizing: border-box;
+  text-align: center;
+}
+#confirm button {
+  background-color: #ff9900;
+  display: inline-block;
+  border-radius: 12px;
+  border: 4px solid #aaa;
+  padding: 5px;
+  text-align: center;
+  width: 35%;
+  cursor: pointer;
+}
+#confirm .message {
+  text-align: left;
+}

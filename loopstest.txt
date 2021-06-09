@@ -1,0 +1,211 @@
+<?php
+
+// DO WHILE LOOP
+
+
+  $plant_height = 22;
+  do  {
+    echo "The plant is $plant_height tall.\n";
+    if ($plant_height >= 30) {
+      echo "And can produce fruit.\n";
+    }
+    $plant_height ++;
+  } while ($plant_height < 31);
+
+
+
+
+
+// Changing values within a loop to be new values
+
+  <?php
+  for ($i = 10; $i >= 0; $i--) {
+    if ($i === 2) {
+      echo "Ready!\n";
+    } elseif ($i === 1) {
+      echo "Set!\n";
+    } elseif ($i === 0) {
+      echo "Go!\n";
+    } else {
+      echo  "count is " .$i . "\n";
+    }
+  }
+
+
+  //LOOPS BREAKING EARLY AND SKIPPING INDIVIDUAL VALUES WITH CONTINUE
+
+  <?php
+  for ($i = 10; $i >= 0; $i--) {
+
+    if ($i === 6) {
+      continue;
+    }
+    if ($i === 2) {
+      echo "Ready!\n";
+    } elseif ($i === 1) {
+      echo "Set!\n";
+      break;
+    } elseif ($i === 0) {
+      echo "Go!\n";
+    } else {
+      echo $i . "\n";
+    }
+  }
+
+  //MISC
+
+  <h1>Only Shoes Shoe Shop</h1>
+<?php
+$i = 0;
+$repeats = [0, 1];
+while ($i < 5):
+?>
+<p>We sell shoes</p>
+  <?php
+  foreach ($repeats as $value):
+  ?>
+  <p>(only shoes)</p>
+  <?php
+  endforeach;
+  ?>
+<?php
+  $i++;
+endwhile;
+?>
+
+//FOR EACH SHORT HAND
+
+<h1>Shoe Shop</h1>
+<?php
+$footwear = [
+  "sandals" => 4,
+  "sneakers" => 7,
+	"boots" => 3
+];
+?>
+<p>Our footwear:</p>
+<?php
+foreach ($footwear as $type => $brands):
+?>
+<p> We sell <?=$brands?> brands of <?=$type ?> </p>
+<?php
+endforeach;
+?>
+
+//BASIC LOOPS IN PRACTICE
+<h1>Shoe Shop</h1>
+<?php
+$footwear = [
+  "sandals" => 4,
+  "sneakers" => 7,
+	"boots" => 3
+];
+?>
+<p>Our footwear:</p>
+<h3>foreach</h1>
+<?php
+foreach ($footwear as $type => $brands):
+?>
+<p>We sell <?=$brands?> brands of <?=$type?></p>
+<?php
+endforeach;
+?>
+<h3>for</h1>
+<?php
+$types = [
+  "sandals",
+  "sneakers",
+	"boots"
+];
+$quantities = [
+  4,
+  7,
+	3
+];
+for ($i=0; $i<count($types); $i++):
+?>
+<p>We sell <?=$quantities[$i]?> brands of <?=$types[$i]?></p>
+<?php
+endfor;
+?>
+<h3>while</h1>
+<?php
+$types = [
+  "sandals",
+  "sneakers",
+	"boots"
+];
+$quantities = [
+  4,
+  7,
+	3
+];
+$i = 0;
+while ($i<count($types)):
+?>
+<p>We sell <?=$quantities[$i]?> brands of <?=$types[$i]?></p>
+<?php
+$i++;
+endwhile;
+?>
+
+//IMPLODE AND CONCATATE VALUES TO TWO STRINGS WITHIN AN ARRAY
+
+
+$message = ["Oh hey", " You're doing great", " Keep up the good work!\n"];
+
+$favorite_nums = [7, 201, 33, 88, 91];
+// Write your code below:
+
+
+echo(implode("!", $message));
+
+= Oh hey! You're doing great! Keep up the good work!
+
+
+//APPENDING ARRAY VALUES TO NEW ARRAY
+
+$round_one = ["X", "X", "first winner"];
+
+$round_two = ["second winner", "X", "X", "X"];
+
+$round_three = ["X", "X", "X", "X", "third winner"];
+
+ -- $winners = [$round_one[2], $round_two[0], $round_three[4]];
+
+
+
+
+
+
+// NESTED ARRAYS
+
+
+$treasure_hunt = ["garbage", "cat", 99, ["soda can", 8, ":)", "sludge", ["stuff", "lint", ["GOLD!"], "cave", "bat", "scorpion"], "rock"], "glitter", "moonlight", 2.11];
+
+
+// USING PRINT_R WILL HELP TO UNDERSTAND THE CODE A BIT EASIER
+  print_r($treasure_hunt[3][4][2][0]);
+
+
+//Adding new values into already exisitng array
+
+$assignment_three = ["Alex"=> 78, "Kenny"=> 92, "Natalia"=> 94, "Lily"=> 79, "Dan"=> 73, "Sara" => 61];
+
+$assignment_three["Kat"] = 97;
+^^^
+will append new key and value to array
+
+
+********************
+// how to use array_push and rand together
+
+ $hybrid_array = ["cat", "dog", 9, 18.2];
+
+$hybrid_array[8] = "five more";
+
+print_r($hybrid_array);
+
+array_push($hybrid_array, rand());
+
+echo $hybrid_array[9];

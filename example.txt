@@ -1,0 +1,752 @@
+<?php
+    
+	//fake uk number: 441632960521
+	//valid uk Walsall landline number: 01922630340
+	//valid UK mobile number: 07376106476
+	//fake NI number: 02890180091
+	//Valid NI number: 02879650694
+	
+	//TEST LEAD NUMBER: 447786398438
+	//TEST LEAD EMAIL: annelise75beckett@gmail.com
+	
+	
+	//NI Numbers tested:
+	//028 9018 0832
+	//028 9018 0625
+	//028 9018 0456
+	//028 9018 0343
+	//028 9018 0347
+	//028 9030 8807
+	//028 9442 8888
+	//028 2827 0648
+	//44 7700 900287
+	
+	/* $telephone = "07123";
+	
+	function Validator_Test($phoneNum)
+	{
+		#echo "<br>" . "inner function: " . $phoneNum . "<br>";
+	
+	
+		#REMOVE ALL SPECIAL CHARACTERS AND WHITE SPACES
+		$phoneNum = preg_replace('/(?=[\[¬`!"©®¯³´¸¹¾abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZÀÁÂÃÄÅÈÉÊËÌÍÎÏÐÒÓÔÕÖ×ØÙÚÛÜÝÞãðõ÷øüýþ¶§£$¤%ÇüéâäàåçêëèïîìæÆôöòûùÿ¢£¥PƒáíóúñÑ‡‡¿¬½¼¡«»¦ßµ±°••²€„…†‡ˆ‰Š‹Œ‘’“”–—˜™š›œŸ¨^\/" "\\\\&*()_\-+={}:;@~#\'<>,.?|\]])./', "", $phoneNum);
+		#echo "inner function after preg: " . $phoneNum . "<br>";
+		
+		
+		#REGULAR EXPRESSIONS FOR EACH NUMBER TYPE
+		$telephoneFunction = null;
+		$mobilePattern = '/^([0]{1}[7]{1}[0-9]{9})\z/';
+		$landPattern = '/^([0-1]{1}[0-6,8-9]{1}[0-9]{8,11})\z/';
+		$mobileIntPattern = '/^([4]{2}[7]{1}[0-9]{9})\z/';
+		$landIntPattern = '/^([4]{2}[1-6,8-9]{1}[0-9]{7,10})\z/';
+		$mobileNonePattern = '/^([7]{1}[0-9]{9})\z/';
+		$mobileDoubleZeroPattern = '/^([0]{2}[4]{2}[7]{1}[0-9]{9})\z/';
+		$STR_NorthenIrelandLandline = '/^(^[^\d]*(\d+)[1-9]{1}?\)?\s?\d{8,8}\s?\d)$/';
+		#echo "inner function after regex variables: " . $phoneNum . "<br>";
+		
+		
+		#IF NUMBER MATCHES NI 
+		preg_match($STR_NorthenIrelandLandline, $phoneNum, $ARR_NILandLine);
+		foreach($ARR_NILandLine as $STR_NILandLineNumber)
+		{
+			
+			$STR_AppendNILandLine = substr_replace($STR_NILandLineNumber, '44', 0, 1);
+			$telephoneFunction = '2,' . $STR_NILandLineNumber;
+		}
+		
+
+		#IF mobileDoubleZeroPattern MATCHES PHONENUM ADD TO mobileDoubleZeroArr
+		preg_match($mobileDoubleZeroPattern, $phoneNum, $mobileDoubleZeroArr);
+		
+		#LOOP THROUGH NUMBERS AND APPEND '' ON POSITION 0-2
+		foreach($mobileDoubleZeroArr as $mobileDoubleZero)
+		{
+			$newMobileDoubleZero = substr_replace($mobileDoubleZero, '', 0, 2);
+			$phoneNum = $newMobileDoubleZero;
+		}
+		#echo "inner function after first foreach loop: " . $phoneNum . "<br>";
+		
+		
+		
+		#IF FIRST MATCHES THE NUMBER ADD TO VARIABLES
+		preg_match($mobileIntPattern, $phoneNum, $mobileIntArr);   
+		foreach($mobileIntArr as $mobileInt)
+		{
+			$telephoneFunction = '1,'.$mobileInt;
+		}
+		#echo "inner function after second foreach loop: " . $telephoneFunction . "<br>";
+		
+		
+		
+		#IF phoneNum MATCHES landIntPattern REGEX FOREACH APPEND '2,' ON TO NUMBER
+		preg_match($landIntPattern, $phoneNum, $landlineIntArr); 
+		foreach($landlineIntArr as $landlineInt)
+		{
+			$telephoneFunction = '2,'.$landlineInt;
+		}
+		#echo "inner function after third foreach loop: " . $telephoneFunction . "<br>";
+		
+		
+		
+		
+		#IF NUMBER MATCHES MISSING 0 REGEX FOREACH NUMBER APPEND 07 TO POSITION 0-1
+		preg_match($mobileNonePattern, $phoneNum, $mobileNoneArr);
+		foreach($mobileNoneArr as $mobileNone)
+		{
+			$newMobileNone = substr_replace($mobileNone, '07', 0, 1);
+			$phoneNum = $newMobileNone;
+		}
+		#echo "inner function after forth foreach loop: " . $phoneNum . "<br>";
+		
+		
+		
+		
+		preg_match($mobilePattern, $phoneNum, $mobileArr);
+		# MOBILE ADD 44 & ADD 1,
+		foreach($mobileArr as $mobile)
+		{
+			$newMobile = substr_replace($mobile, '44', 0, 1);
+			$telephoneFunction = '1,'.$newMobile;
+		}
+		#echo "inner function after fith foreach loop: " . $telephoneFunction . "<br>";
+		
+		
+		#IF NUMBER MATCHES LANDPATTERN FOREACH NUMBER APPEND '44' IN POSISTION 0-1 AND ADD '2,' TO START
+		preg_match($landPattern, $phoneNum, $landlineArr);
+		foreach($landlineArr as $landline)
+		{
+			$newLandline = substr_replace($landline, '44', 0, 1);
+			$telephoneFunction = '2,'.$newLandline;
+		}
+		#echo "inner function after sixth foreach loop: " . $telephoneFunction . "<br>";
+		
+		
+		# CHECKS LENGTH OF INPUT STRING
+		if ($telephoneFunction == null)
+		{
+			echo "inner function if telephoneFunction is null: " . $telephoneFunction . "<br>";
+			return '3,'.$phoneNum;
+		}
+		
+		else
+		{
+			echo "inner function else telephoneFunction is not null: " . $telephoneFunction . "<br>";
+			return $telephoneFunction;
+		}
+
+	} 
+
+
+
+	$telephoneFirstCheck = true;
+	$arrayItem = explode(',',Validator_Test($telephone));
+	foreach($arrayItem as $key => $singleItem)
+	{
+		#1, 2 or 3
+		if($key == 0)
+		{
+			#FALSE = 3
+			if($singleItem == 3)
+			{
+				$telephoneFirstCheck = false;
+				echo "Number is 3 so number is false";
+			}
+			#LANDLINE = 2
+			else if($singleItem == 2)
+			{
+				$telephoneChecker = 'landline';
+				echo "Number is " . $telephoneChecker . " " . $telephone . "<br>";
+			}
+			#MOBILE = 1
+			else if($singleItem == 1)
+			{
+				$telephoneChecker = 'mobile';
+				echo "Number is " . $telephoneChecker. " " .$telephone . "<br>";
+			}
+		}
+		
+		#mob, land or false
+		else if($key == 1)
+		{
+			if($telephoneChecker == 'mobile'){
+				#CHANGE THIS TO MOBILE AS A VAR !!!!!!!!!!!!!
+				$telephone = $singleItem;
+			}
+			else if($telephoneChecker == 'landline')
+			{
+				$telephone = $singleItem;
+			}
+			
+		}
+		
+	}
+	
+	
+	if($telephoneFirstCheck == true)
+	{	
+		echo "<br>" . "Number before API: " . $telephone . "<br>";
+		$verify = TelephoneValidator($telephone);
+		var_dump($verify);
+	}
+	#echo "end result " . Validator_Test($telephone) . "<br>";
+	
+	
+	$verify = TelephoneValidator($telephone);
+	var_dump($verify);
+		
+	function TelephoneValidator($TelephoneNumber)
+	{
+		#
+		$Validator['URL'] = 'https://webservices.data-8.co.uk/InternationalTelephoneValidation.asmx?WSDL';
+		$Validator['Options'] = [];
+		$Validator['Parameters'] = [];
+
+		# API OPTIONS ARRAY
+		$Validator['Options'][0] = ["Name" => 'UseMobileValidation', "Value" => "true"];
+		$Validator['Options'][1] = ["Name" => 'UseLineValidation', "Value" => "true"];
+		$Validator['Options'][2] = ["Name" => 'RequiredCountry', "Value" => "GB"];
+
+		# API PARAMETER ARRAY
+		$Validator['Parameters']['username'] = 'james@think-ins.co.uk';
+		$Validator['Parameters']['password'] = '123Think123';
+		$Validator['Parameters']['telephoneNumber'] = $TelephoneNumber;
+		$Validator['Parameters']['defaultCountry'] = 'GBR';
+		$Validator['Parameters']['options'] = $Validator['Options'];
+		
+		# RUN ACTION
+		$Run_Validator = new SoapClient($Validator['URL']);
+		$Validator_Result = $Run_Validator -> IsValid($Validator['Parameters']);
+		if($Validator_Result -> IsValidResult -> Status -> Success == 0)
+		{
+			return "Error Message: " . $Validator_Result -> IsValidResult -> Status -> ErrorMessage;
+		}
+		else
+		{
+			return $Validator_Result;
+		}
+
+	} */
+	
+	/* $Data = 
+	[
+		'CommunicationAction' => 'Text',
+		'Email' => 
+		[
+			'Template_Manual' => '1', 
+			'Content' => 
+			[
+				'Manual' => 
+				[
+					'Subject' => 'SubjectNameTest',//$Data['Subject'],
+					'Body' => 'EMAIL TEST',
+				],
+				'Template' => '12', 
+				'Addresses' => 
+				[
+					'scottgreenhill@think-ins.co.uk',
+				],
+			],
+		],
+		'Text' => 
+		[
+			'Template_Manual' => '1',
+			'Content' => 
+			[
+				'Manual' => 
+				[
+					'Subject' => 'SubjectNameTest', //$Data['Subject'],
+					'Body' => 'TEST TEXT',
+				],
+				'TemplateID' => '123', 
+				'Numbers' => 
+				[
+					'01922630340',
+				],
+				'Agent' => 
+				[
+					'AgentID' => '123456',
+					'FirstName' => '',
+					'LastName' => '',
+				],
+				'Client' => 
+				[
+					'ClientID' => '1stone',
+					'FirstName' => '',
+					'LastName' => '',
+				],
+				'SmartSwitch' => 
+				[
+					'ClientNameReplace' => '@@ClientName',
+					'StaffNameReplace' => '@@StaffName',
+					'EmailReplace' => '@@Email',
+				],
+			],
+		],
+	];
+	
+	
+
+	array_walk_recursive($Data, Replace );
+	
+	function Replace( &$value, $key ) 
+	{
+	   $value = str_replace( '@@ClientName', 'Scottttttt', $value );
+	   $value = str_replace( '@@StaffName', 'sds', $value );
+	   $value = str_replace( '@@Email', 'Hello', $value );
+	}
+
+	var_dump($Data);  */
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// $iterator = new RecursiveIteratorIterator(new RecursiveArrayIterator($Data));
+
+	// foreach($iterator as $key=>$value) 
+	// {
+		// echo $key.' -- '.$value.'<br />';
+	// }
+
+	// CLASSES > DATA & SWITCH	
+	// require $Base.'/classes/class.comms.php';
+	// $Comms = new Comms();
+	
+	// ###TEXT###
+	// $Data = 
+	// [
+		// "IdentifyID" => 366157,
+		// "AgentID" => 366157,
+		// "InternalTemplate" =>'testing Email',
+		// "Subject" => 'Testing email manual',
+		// "Internal" => 1,
+		// "Email" => "scottgreenhill@think-ins.co.uk"
+	// ];
+	// return $text = $Comms -> Send(Email_OLD, $Data);
+	
+
+	
+		# !!!NOTE: NEEDED WHEN WE MOVE THIS TO REPORTS
+
+		# GET BASE PATH
+		$Domain = $_SERVER['SERVER_NAME'];
+		$Root = $_SERVER['DOCUMENT_ROOT'];
+		$Base = str_replace($Domain, 'public_html', $Root);
+
+		require_once $Base . '/classes/class.data.php';
+		$classData = new classData();
+		$INT_Recorded_time = microtime(true);
+		
+		
+		$ARR_Data = 
+		[
+			'Staff' => 
+			[
+				'Harrison Perry' => 
+				[
+					'StaffID' => 12606, 
+					'Schemes' => 
+					[
+						'Euna' => [],
+						'Tradewise' => [],
+						'Granite' => [] ,
+						'Policy Plan' => [],
+						'Trade X - Manual' => [],
+						'TFP' => [],
+						'Covea' => [],
+						'Trade X Bespoke' => [],
+						'Zenith' => [],
+						
+					],
+				],
+				
+				'David Birch' => 
+				[
+					'StaffID' => 7, 
+					'Schemes' => 
+					[
+						'Euna' => [],
+						'Tradewise' => [],
+						'Granite' => [] ,
+						'Policy Plan' => [],
+						'Trade X - Manual' => [],
+						'TFP' => [],
+						'Covea' => [],
+						'Trade X Bespoke' => [],
+						'Zenith' => [],
+						
+					],
+				],
+				
+			
+				'Jack Sharp' => 
+				[
+					'StaffID' => 11, 
+					'Schemes' => 
+					[
+						'Euna' => [],
+						'Tradewise' => [],
+						'Granite' => [] ,
+						'Policy Plan' => [],
+						'Trade X - Manual' => [],
+						'TFP' => [],
+						'Covea' => [],
+						'Trade X Bespoke' => [],
+						'Zenith' => [],
+						
+					],
+				],
+			
+				'Sophie Rubery' => 
+				[
+					'StaffID' => 63, 
+					'Schemes' => 
+					[
+						'Euna' => [],
+						'Tradewise' => [],
+						'Granite' => [] ,
+						'Policy Plan' => [],
+						'Trade X - Manual' => [],
+						'TFP' => [],
+						'Covea' => [],
+						'Trade X Bespoke' => [],
+						'Zenith' => [],
+						
+					],
+				],
+				
+				'Chloe Teale' => 
+				[
+					'StaffID' => 84462, 
+					'Schemes' => 
+					[
+						'Euna' => [],
+						'Tradewise' => [],
+						'Granite' => [] ,
+						'Policy Plan' => [],
+						'Trade X - Manual' => [],
+						'TFP' => [],
+						'Covea' => [],
+						'Trade X Bespoke' => [],
+						'Zenith' => [],
+						
+					],
+				],	
+			],
+		];
+		
+	$INT_DateFrom = strtotime('first day of last month 00:00:00');
+	$INT_DateTo = strtotime('last day of last month 23:59:59');
+	$INT_DateTo = time();
+	
+	$Filter = '
+		AND leadsHistory.seconds < '.$INT_DateFrom.'
+		ORDER BY leadsHistory.ID DESC
+		LIMIT 1
+	';
+	$OBJ_LH = $classData -> GetLeadsHistory($Filter);
+	for($i=0; $i < $OBJ_LH -> num_rows; $i++)
+	{
+		$Row = $OBJ_LH -> fetch_object();
+		
+		$INT_KingID = $Row -> ID;
+	}
+	
+	$STR_Filter = '
+		AND leadsHistory.ID > '.$INT_KingID.'
+		AND leadsHistory.response IN (104,115)
+		AND leadsHistory.fromIDKey IN (12606,84462,63,11,7)
+		
+		AND Quote.Quote_seconds BETWEEN '.$INT_DateFrom.' AND '.$INT_DateTo.'
+		AND Quote.Scheme_ID IN (10,19,20,22,23,24,25,182,184)
+	';
+	$OBJ_LeadRequest = $classData -> DevelopmentJosh($STR_Filter);
+	for ($i = 0; $i < $OBJ_LeadRequest -> num_rows; $i++)
+	{
+
+		$Row = $OBJ_LeadRequest -> fetch_object();
+		$INT_Quote_ID = $Row -> Quote_ID;
+		$INT_Cover_ID = $Row -> Cover_ID;
+		$INT_Scheme_ID = $Row -> Scheme_ID;
+		$INT_Quote_Seconds = $Row -> Quote_Seconds;
+		$INT_StaffID = $Row -> fromIDKey;
+		
+		$FromIDKeyFirstName = $Row -> FromIDKeyFirstName;
+		$FromIDKeyLastName = $Row -> FromIDKeyLastName;
+		
+		switch ($INT_Scheme_ID)
+		{
+			case 10: 
+				if($INT_StaffID == 63)
+				{
+				}
+				if($INT_StaffID == 63)
+				{
+				}
+				if($INT_StaffID == 63)
+				{
+				}
+				if($INT_StaffID == 63)
+				{
+				}if($INT_StaffID == 63)
+				{
+				}
+			break;
+			case 19: 
+				if($INT_StaffID == 7)
+				{
+					$INT_CounterDavid++;
+				} 
+				else if($INT_StaffID == 11)
+				{
+					$INT_CounterJack++;
+				} 
+				else if($INT_StaffID == 63)
+				{
+					$ARR_Data['Staff']['Shopie Rubery']['Schemes']['Euna'][]++;
+				}
+				else if($INT_StaffID == 12606)
+				{
+					$INT_CounterHarrison++;
+				} 
+				else if($INT_StaffID == 84462)
+				{
+					$INT_CounterChloe++;
+				}		
+			break;
+			case 20:
+				if($StaffID == 63)
+				{
+					$ARR_Data['Staff']['Shopie Rubery']['Schemes']['Euna'][]++;
+				}
+			break;	
+			case 22:
+				if($INT_StaffID == 11)
+				{
+					$INT_CounterJack++;
+				} 
+				else if($INT_StaffID == 7)
+				{
+					$INT_CounterDavid++;
+				}
+				else if($INT_StaffID == 63)
+				{
+					$ARR_Data['Staff']['Shopie Rubery']['Schemes']['Euna'][]++;
+				}
+				else if($INT_StaffID == 12606)
+				{
+					$INT_CounterHarrison++;
+				} 
+				else if($INT_StaffID == 84462)
+				{
+					$INT_CounterChloe ++;
+				}		
+			break;
+			case 23:
+				if($INT_StaffID == 63)
+				{
+					$INT_CounterSophie++;
+				} 
+				else if($INT_StaffID == 7)
+				{
+					$INT_CounterDavid++;
+				} 
+				else if($INT_StaffID == 11)
+				{
+					$INT_CounterJack++;
+				}
+				else if($INT_StaffID == 63)
+				{
+					$ARR_Data['Staff']['Shopie Rubery']['Schemes']['Euna'][]++;
+				} 
+				else if($INT_StaffID == 84462)
+				{
+					$INT_CounterChloe ++;
+				}		
+			break;
+			case 24:
+				if($INT_StaffID == 84462)
+				{
+					$INT_CounterChloe++;
+				} 
+				else if($INT_StaffID == 7)
+				{
+					$INT_CounterDavid++;
+				} 
+				else if($INT_StaffID == 11)
+				{
+					$INT_CounterJack++;
+				}
+				else if($INT_StaffID == 12606)
+				{
+					$INT_CounterHarrison++;
+				}
+				else if($INT_StaffID == 63)
+				{
+					$ARR_Data['Staff']['Shopie Rubery']['Schemes']['Euna'][]++;
+				}		
+			break;
+			case 25:
+				if($INT_StaffID == 12606)
+				{
+					$INT_CounterHarrison++;
+				} 
+				else if($INT_StaffID == 7)
+				{
+					$INT_CounterDavid++;
+				} 
+				else if($INT_StaffID == 11)
+				{
+					$INT_CounterJack++;
+				}
+				else if($INT_StaffID == 63)
+				{
+					$ARR_Data['Staff']['Shopie Rubery']['Schemes']['Euna'][]++;
+				} 
+				else if($INT_StaffID == 84462)
+				{
+					$INT_CounterChloe ++;
+				}		
+			break;
+			case 182:
+				if($StaffID == 63)
+				{
+					$ARR_Data['Staff']['Shopie Rubery']['Schemes']['Euna'][]++;
+				}
+			break;
+			case 184:
+				if($StaffID == 63)
+				{
+					$ARR_Data['Staff']['Shopie Rubery']['Schemes']['Euna'][]++;
+				}
+			break;							
+		} 
+	}
+	
+	
+	$HTML_TableRows = '
+	<tbody>
+	<tr>
+	<th>TradeWise</th>
+	<td>'.count($ARR_Data['Staff']['Shopie Rubery']['Schemes']['Euna']).'</td>
+	<td>'.count($ARR_Data['Staff']['Shopie Rubery']['Schemes']['Euna']).'</td>
+	<td>123</td>
+	<td>123</td>
+	<td>123</td>
+	<td>123</td>
+	<td>123</td>
+	</tr>
+	<tr>
+	<th>Granite</th>
+	<td>122</td>
+	<td>123</td>
+	<td>123</td>
+	<td>123</td>
+	<td>123</td>
+	<td>123</td>
+	<td>123</td>
+	</tr>
+	<tr>
+	<th>Granite</th>
+	<td>122</td>
+	<td>123</td>
+	<td>123</td>
+	<td>123</td>
+	<td>123</td>
+	<td>123</td>
+	<td>123</td>
+	</tr>
+	</tbody>
+	';
+	
+	$HTML_Table = '
+	<table>
+	<thead>
+	<tr>
+	<th>Scheme / Agent:</th>
+	<th>Harrison Perry</th>
+	<th>Chloe Teale</th>
+	<th>Sophie Rubery</th>
+	<th>Jack Sharp</th>
+	<th>David Birch</th>
+	<th>Insurer Total</th>
+	<th>Insurer Total Percentage %</th>
+	</tr>
+	</thead>
+	'.$HTML_TableRows.'
+	</table>
+	';
+	
+	
+	echo $HTML_Table;
+?>
+
+
+
+
+
+<script>
+
+	const numbers = [
+	"442830261777", 
+	"02837517673", 
+	"02076001863", 
+	"02078373655",
+	"028 90 18 07 87",
+	"028 90 18 0734",
+	"028123456341",
+	"028 7965 0694",
+	"44 28 7965 0694",
+	" 02890183433",
+	"02890180787 ",
+	];
+
+	numbers.forEach(function(telephone) 
+	{
+		validationTelephone(telephone);
+	});
+
+	function validationTelephone(validationData)
+	{
+		var telephone = validationData.replace('+', ''),
+			telephonePatt =/(^\(?(0|44)[0-9\'\- ]{0,12}?\)?\d)$/gm;
+
+		if(telephonePatt.exec(telephone) != null)
+		{
+			$('.Valid').append(telephone + '<br>');
+		}
+		else
+		{
+			$('.InValid').append(telephone + '<br>');
+		}
+	}
+</script>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+	

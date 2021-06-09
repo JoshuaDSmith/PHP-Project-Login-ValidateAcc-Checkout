@@ -1,0 +1,6 @@
+	<button data-classification="Button" data-object="Login" data-action="LoginEmailcheck">
+								<span>Login</span>
+							</button>
+
+
+					$OBJ['Response']['Reaction']['Alert'] = 'Test';
