@@ -4,27 +4,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../Session/styles.css">
 </head>
-    <ul class="HeaderFooterRowColumn Color1 ConditionalCenter">
-        <li class="Center Quarter">
+
+    <ul class="RowColumn Full Color1 BorderBottom HeaderFooter ">
+        <li class="Center">
             <img class="White" src="../../Session/Assets/Logo.png" alt="Logo" width="" height="100"/>
          </li>
          
-         <form class="Full Center Quarter">
-            <input class="Full " placeholder="Search"/>
+         <form class="Center">
+            <input class="Full Center" placeholder="Search"/>
          </form>
-        <li class="Center Quarter flexright">
+        <li class="Center flexright">
             <a class="black" href="/SESSION/templates/Checkout.php">
                 <i class="fab fa-opencart"></i>Basket
             </a>
         </li>
-        <li class="Center Quarter">
+        <li class="Center">
             <a class="White" href="/SESSION/logout.php">
                 <i class="far fa-user-circle"></i>Logout
             </a>
         </li>
      </ul>
 
-    <ul class="RowColumn Color2 BorderBottom">
+    <ul class="RowColumn Full Color2 BorderBottom">
         <li class="Center padding">
             <a class="Grey" href="/SESSION/Profile.php">Profile</a>
         </li>

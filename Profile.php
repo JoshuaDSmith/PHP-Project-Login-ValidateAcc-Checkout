@@ -13,48 +13,51 @@ if($_SESSION["value"] == null)
 
 <?php  include "./templates/Header.php"; ?>
 
-//Issue with the code, sending files to the folder destination. TASK Rewatch video and see whats up
-
 <?php
 
-$msg="";
+    $msg="";
 
-if(isset($_POST['upload'])) {
-    $target = "./images/".basename($_FILES['image']['name']);
-    $image = $_FILES['image']['name'];
-    $text = $_POST['text'];
+    if(isset($_POST['upload'])) {
+        $target = "./images/" . basename($_FILES['image']['name']);
+        $image = $_FILES['image']['name'];
+        $text = $_POST['text'];
 
-    $sql = "INSERT INTO profile (id,image, Description) VALUES ('$IDVALIDATION','$image','$text')";
-   mysqli_query($conn, $sql); 
-    $image ="";
-    $text = "";
-}
+        $sql = "INSERT INTO profile (id,image, Description) VALUES ('$IDVALIDATION','$image','$text')";
+        mysqli_query($conn, $sql); 
 
-$sql = 'SELECT * FROM profile WHERE id = '.$IDVALIDATION.'';
-$result = mysqli_query($conn, $sql);
+        move_uploaded_file($_FILES['image']['tmp_name'], "images/$image");
 
-while ($row = mysqli_fetch_array($result)) {
+        header("location: Homepage.php");
+    }
 
-    $url = "./images/" .$row['image'];
-    $number =  $row['number'];
-    $Description = $row['Description'];
+    # SET RANGE PARAMETERS
+    $INT1 = 1;
+    $INT2 = 20;
 
-   
-    $Display .= 
-    "
-                <div class='Column'>
-                <td>$count </td>
-                <td>$number</td>
-                <td><a href='".$url."'><img style='width: 180px;height:180px;'  src='".$url."'/></a></td>
-                <td>$Description</td>
+    $sql = '
+        SELECT * FROM profile WHERE id = ' . $IDVALIDATION . '
+        LIMIT '. $INT1 .', ' . $INT2 . '
+    ';
+    $result = mysqli_query($conn, $sql);
+
+    if ($result -> num_rows > 0 ) {
+    while($row = $result -> fetch_assoc()) {
+
+        $number = $row['number'];
+        $url = "./images/" . $row['image'];
+        $number =  $row['number'];
+        $Description = $row['Description'];
+
+    
+        $Display .= "
+            <div class='Column Padding'>
+                <span><a onclick='DisplayID($number)'><img style='width: 100px;height:100px;'  src='" . $url . "'/></a></span>
+                <span>$Description</span>
             </div>
-            <div>
-                <td><button id='.$number.' class='MakeProfileButton Full'><i class='fas fa-check-circle'></i></button></td>
-                <td><button id='$number' class='DeleteButton Full'><i class='fas fa-trash-alt'></i></button></td>
-            </div>
-  ";  
-   
-}
+        
+    ";  
+    }
+    }
 ?>
 
   <head>
@@ -67,40 +70,42 @@ while ($row = mysqli_fetch_array($result)) {
 </head>
 
 
-<main>
-    <div class="Quarter">
-        <form method='post' enctype="multipart/form-data">
-            <input type="hidden"
-                name="size"
-                accept="image/png, image/jpg"
-                value="10000">
-                <div class="Column">
-                    <input type="file" name="image">     
-                    <textarea name="text" cols="40" rows="4" placeholder="Optional: Add a Description"></textarea>   
-                    <button type="submit" name="upload"> Submit </button>
-                </div>   
-        </form>
-    </div>
-    <div class="Mid  overflow">
-        <table class="ColumnRow">
+<main class="">
+    <span class="Quarter">
+        <section class="">
+            <form method='post' enctype="multipart/form-data">
+                <input type="hidden"
+                    name="file"
+                    accept="image/png, image/jpg"
+                    value="10000">
+                    <div class="Column">
+                        <input type="file" name="image">     
+                        <textarea name="text" cols="40" rows="4" placeholder="Optional: Add a Description"></textarea>   
+                        <button type="submit" name="upload"> Submit </button>
+                    </div>  
+            </form>
+        </section>
+
+        <span class="Green Row Flexwrap">
             <?php echo $Display; ?>
-        </table>
-    </div>
+        </span>
+
+         <span class="Center Row">
+            <button class="Red">PREV</button>
+           <button id="NextImages" class="Green">NEXT</button>
+        </span>
+    </span>
 </main>
 
 <script>
 
+function DisplayID(prop) {
+    console.log(prop);
+}
+// $('[data-objectid=1770]').attr('data-deleteTable', 'Campaign');
 
-$('button').click(function() {
-        //event.preventDefault(e)
-        let targetter = event.target.parentNode.parentNode.parentNode.children[1];
-
-        let Cookies = targetter.innerText;
-      
-       
-        document.cookie = "DeleteCookie = " + Cookies;
-        console.log(document.cookie)
-
+$('NextImages').click(function() {
+console.log('hello');
 
 });
 

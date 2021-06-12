@@ -23,17 +23,20 @@ foreach($newArray as $Index=>$value)
 
     $url=$Arr_shoppingList[$value]["Img"];
     $Display .= "
-    <tr class='Color2'>
-            <td><img href='".$url."'><img style='width: 220px;height:220px;'  src='".$url."'/></td>
-            <td><p>" . $Arr_shoppingList[$value]["CarMake"]."<p></td>
-            <td>" . $Arr_shoppingList[$value]["CarModel"] ."</td>
-            <td>" . $Arr_shoppingList[$value]["Owners"] ."</td>
-            <td><p>" . $Arr_shoppingList[$value]["Price"] . "</p></td>
-            <td><p>". $Arr_shoppingList[$value]["Owners"] . "</p></td>
-            <td Purchase Full padding><button id='button' class='button' onclick='functionAlert()'> Remove </button></td>
-        </tr>
-        ";
-    
+    <span class='Row FullFlex'>
+        <span class='Column Color2'>
+                <span><img href='" . $url . "'><img style='width: 220px;height:220px;'  src='".$url."'/></span>
+        </span>
+        <span class='Column'>
+            <span><p> Make: " . $Arr_shoppingList[$value]["CarMake"]."<p></td>
+            <span> Model: " . $Arr_shoppingList[$value]["CarModel"] ."</span>
+            <span><p>Price: £" . $Arr_shoppingList[$value]["Price"] . "</p></span>
+            <span>Owners: " . $Arr_shoppingList[$value]["Owners"] ."</span>
+            <span class='Full padding'><button id='button' class='button Confirm' onclick='functionAlert()'> Remove </button></span>
+        </span>
+        
+    </span>
+    ";
         array_push($TotalPrice, $Arr_shoppingList[$value]["Price"]);
     
 }
@@ -55,33 +58,24 @@ $CheckoutPrice = array_sum($TotalPrice);
     <title>Document</title>
 </head>
 
-<main class="RowColumn Spacing Delicate">
+<main class="RowColumn Color5 Spacing">
 
-    <table class='Center Spacing Full boxshadow Margin'>
-        <tr>
-            <th> Car Img </th>
-            <th> Car Make: </th>
-            <th> Model: </th>
-            <th> Litres </th>
-            <th> Price: </th>
-            <th> Prev Owners </th>
-            <th> Remove: </th>
-            <th> Quantity: </th>
-        </tr>
+    <span class='Center Spacing boxshadow MidFlex Margin Color6'>
          <?php echo $Display?>
-    </table>
+    </span>
 
-	<div class="RowColumn">
-        <div class="Column">
+	<div class="QuarterFlex RowColumn Padding">
+        <div class="Column boxshadow Color6">
             <h2>Checkout Items:<h2>
-                <form class="Row">
-                    <input class="Half" placeholder="Enter PromoCode"/>
-                    <button class="Half"> Apply </button>
-                </form>
 
-                <h1>SubTotal: £<?php echo $CheckoutPrice;?></h1>
-            <h2>Payment Options:</h2>
-            <div class="Full">
+            <form class="Column">
+                <input class="" placeholder="Enter PromoCode"/>
+                <button class="Full"> Apply </button>
+            </form>
+
+            <h1>SubTotal: £<?php echo $CheckoutPrice;?></h1>
+            <h2>Acceptable Methods:</h2>
+            <div class="">
                 <span style="font-size: 3em; color: lightblue;">
                     <i class="fab fa-cc-visa"></i>
                 </span>
@@ -98,24 +92,26 @@ $CheckoutPrice = array_sum($TotalPrice);
                     <i class="fas fa-credit-card"></i>    
                 </span>
             </div>
-        </div>
-           <div class="Column">
-            <button class="boxshadow Full Padding " onclick="AddBasket();"> Use a New Payment Method </button>
-                <div id="test" class="color1" style="display:none"> 
-                    <form class="Column">
-                    <input placeholder="Full Name on Card"/>
-                    <input type="number" placeholder="16-digit Card Number"/>
-                    <input type="number" placeholder="CSV Number"/>
-                    <p>Expiry Date:</p>
-                    <div class="Row">
-                        <input type="number"/>/
-                        <input type="number"/>
-                    </div>
-                </div>  
-                <label>Card
-                    <div id="card-element"></div>
-                </label>
+
+              <div class="Full Column Color1 MarginTop Padding">
+                <button class="Full" onclick="AddBasket();"> Use a New Payment Method? </button>
+                    <div id="test" style="display:none"> 
+                        <form class="Column MarginTop">
+                        <input class="Padding" placeholder="Full Name on Card"/>
+                        <input class="Padding" type="number" placeholder="16-digit Card Number"/>
+                        <input class="Padding" type="number" placeholder="CSV Number"/>
+                        
+                        <p>Expiry Date:</p>
+                        
+                        <div class="Row">
+                            <input type="number"/>/
+                            <input type="number"/>
+                        </div>
+
+                        <button class="Full MarginTop boxshadow confirm"> Add Card </button>
+                    </div>  
             <div>
+        </div>
     </div>
 </main>
 

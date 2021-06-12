@@ -36,12 +36,12 @@ if($DATE_BaseTimeChecker >= $DATE_NoonValue)
     <title>Homepage</title>
 </head>
 
-<h1 class="Center Italic"><?php echo  $STR_Message; ?>  <?php echo $UserName; ?> </h1>
+<h1 class="Right Italic"><?php echo  $STR_Message; ?>  <?php echo $UserName; ?> </h1>
 <main>
     <div class="Mid">
         <div class="Center padding boxshadow">
             <h2>
-                <a href="./Profile.php" >Profile</a>
+                <a href="./Profile.php">Profile</a>
             </h2>
             <p> View & Update Your personal information</p>
         </div>
